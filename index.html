@@ -43,14 +43,36 @@ h2{margin:0;font-size:clamp(36px,5vw,64px);letter-spacing:-.03em;font-weight:800
 .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
 .filters button{min-height:44px;padding:10px 20px;border-radius:999px;border:1.5px solid var(--ink);font:inherit;font-size:15px;font-weight:600;cursor:pointer;background:transparent;color:var(--ink)}
 .filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:40px 28px}
-.card{display:flex;flex-direction:column;gap:16px}
-.thumb{aspect-ratio:4/3;border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;transition:transform .25s ease}
-.thumb:hover{transform:translateY(-4px)}
-.thumb .t{font-size:clamp(32px,3.4vw,44px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.cases{display:flex;flex-direction:column;gap:96px}
+.case{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:center}
+.case:nth-child(even) .frame{order:2}
+@media (max-width:900px){.case{grid-template-columns:1fr;gap:28px}.case:nth-child(even) .frame{order:0}}
+.frame{display:block;border:1.5px solid var(--ink);border-radius:18px;overflow:hidden;background:#fff;text-decoration:none;box-shadow:10px 10px 0 var(--ink);transition:transform .25s ease,box-shadow .25s ease}
+.frame:hover{transform:translate(-4px,-4px);box-shadow:14px 14px 0 var(--accent),14px 14px 0 1.5px var(--ink)}
+.bar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1.5px solid var(--ink);background:var(--bg);font-size:12px;color:var(--muted)}
+.bar i{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--ink);display:inline-block}
+.bar span{margin-left:10px;padding:3px 12px;border-radius:999px;background:#fff;border:1px solid var(--soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.frame img,.shot img{display:block;width:100%;height:auto;aspect-ratio:1440/1000;object-fit:cover;object-position:top}
+.case-text{display:flex;flex-direction:column;gap:20px}
+.case-text .k{font-size:13px;letter-spacing:.06em;color:var(--muted)}
+.case-text h3{font-size:clamp(36px,4.2vw,56px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.case-text p{margin:0;font-size:18px;line-height:1.6;color:var(--muted)}
+.hl-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:16px;line-height:1.5}
+.hl-list li{display:flex;gap:12px}.hl-list li:before{content:"✦";flex:none;font-size:13px;line-height:24px}
+.stack{display:flex;flex-wrap:wrap;gap:8px}
+.stack span{font-size:12px;padding:5px 10px;border-radius:999px;background:var(--ink);color:var(--bg)}
+.case-text .btn{align-self:flex-start;font-size:16px;padding:14px 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:48px 28px}
+.card{display:flex;flex-direction:column;gap:14px}
+.shot{position:relative;display:block;border:1.5px solid var(--ink);border-radius:16px;overflow:hidden;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease}
+.shot:hover{transform:translateY(-4px);box-shadow:0 6px 0 var(--ink)}
+.shot .lbl{position:absolute;left:12px;bottom:12px;font-size:11px;letter-spacing:.06em;background:var(--bg);color:var(--ink);border:1.5px solid var(--ink);padding:4px 10px;border-radius:999px}
+.thumb{aspect-ratio:1440/1000;padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+.thumb .t{font-size:clamp(30px,3.2vw,40px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.card h4{margin:0;font-size:24px;font-weight:700;letter-spacing:-.02em}
 .meta{display:flex;gap:12px;justify-content:space-between;align-items:center}
 .tag{font-size:13px;border:1.5px solid var(--ink);padding:5px 12px;border-radius:999px}
-.links{display:flex;gap:4px;font-size:14px}.links a{padding:12px 10px}
+.links{display:flex;gap:4px;font-size:14px;margin-left:-10px}.links a{padding:8px 10px}
 .card p{margin:0;font-size:16px;color:var(--muted);line-height:1.55}
 .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));border-top:1.5px solid var(--ink);margin-top:48px}
 .services div{padding:32px 24px 32px 0;border-bottom:1.5px solid var(--ink);display:flex;flex-direction:column;gap:14px}
@@ -91,7 +113,7 @@ footer a{color:var(--muted)}
   <p class="status mono"><span class="dot"></span>Available for new projects</p>
   <h1>I design &amp; build<br>web tools people<br><span class="hl">actually use.</span></h1>
   <div class="hero-row">
-    <p class="lead">Hi, I'm Lucas Bui — a web designer who turns everyday problems into clean, simple web apps: from staff scheduling and exam formatting to interactive science labs for classrooms.</p>
+    <p class="lead">Hi, I'm Lucas Bui — a web designer who turns everyday problems into clean, simple web apps: from learning platforms and online stores to staff scheduling tools and interactive science labs for classrooms.</p>
     <div class="btns">
       <a href="#work" class="btn solid">View my work</a>
       <a href="https://github.com/sucalb" class="btn" target="_blank" rel="noopener">GitHub ↗</a>
@@ -99,10 +121,15 @@ footer a{color:var(--muted)}
   </div>
 </section>
 
-<div class="marquee mono" aria-hidden="true"><p>WEB DESIGN  ✦  WEB APPS  ✦  EDTECH  ✦  INTERACTIVE SIMULATIONS  ✦  LANDING PAGES  ✦  REACT + TYPESCRIPT  ✦  WEB DESIGN  ✦  WEB APPS  ✦  EDTECH  ✦  INTERACTIVE SIMULATIONS  ✦  LANDING PAGES  ✦  REACT + TYPESCRIPT  ✦  </p></div>
+<div class="marquee mono" aria-hidden="true"><p>WEB DESIGN  ✦  WEB APPS  ✦  EDTECH  ✦  INTERACTIVE SIMULATIONS  ✦  E-COMMERCE  ✦  LANDING PAGES  ✦  REACT + TYPESCRIPT  ✦  WEB DESIGN  ✦  WEB APPS  ✦  EDTECH  ✦  INTERACTIVE SIMULATIONS  ✦  E-COMMERCE  ✦  LANDING PAGES  ✦  REACT + TYPESCRIPT  ✦  </p></div>
 
 <section id="work" class="wrap sec">
-  <div class="sec-head"><h2>Selected work</h2><p class="mono" id="count" style="margin:0;font-size:14px;color:var(--muted)"></p></div>
+  <div class="sec-head"><h2>Featured work</h2><p class="mono" style="margin:0;font-size:14px;color:var(--muted)">(03 live client sites)</p></div>
+  <div class="cases" id="cases"></div>
+</section>
+
+<section id="more" class="wrap" style="padding-bottom:64px">
+  <div class="sec-head"><h2>More projects</h2><p class="mono" id="count" style="margin:0;font-size:14px;color:var(--muted)"></p></div>
   <div class="filters" id="filters"></div>
   <div class="grid" id="grid"></div>
 </section>
@@ -158,26 +185,53 @@ footer a{color:var(--muted)}
 
 <script>
 const gh='https://github.com/sucalb/';
-const P=[
- ['SortShifts','Tools','TYPESCRIPT','https://sort-shifts.vercel.app','SortShifts','#111111','#F2F1EC','Schedules English teaching assistants across two campuses, auto-assigning shifts from staff availability and syncing with Google Sheets.'],
- ['FormatWords','Tools','HTML · JS','https://format-words.vercel.app','FormatWords','var(--accent)','#111111','Turns multiple-choice exams from Word, PDF or photos into clean Word files — with in-browser review, version shuffling and answer-key export.'],
- ['VirLabs','Education','HTML · JS','https://sucalb.github.io/VirLabs/','VirLabs','#BFC8D6','#111111','Interactive simulations for secondary and high-school teachers of math, science, geography and IT.'],
- ['Periodic Table','Education','HTML · JS','https://sucalb.github.io/PeriodicTable/','PeriodicTable','#D9D7CE','#111111','An interactive periodic table built for Grade 10 chemistry students in Vietnam.'],
- ['Mapping Ethnics','Creative','JAVASCRIPT','','MappingEthnics','#2E4A3F','#F2F1EC','A digital map atlas of public discourse about Vietnam’s 53 ethnic minority groups.'],
- ['MusicPlayer','Creative','REACT · TS · VITE','','MusicPlayer','#FFB4A2','#111111','A retro-style music player with interactive 3D instruments.'],
- ['ShiftRegister','Tools','JS · APPS SCRIPT','https://sucalb.github.io/ShiftRegister/','ShiftRegister','#D9D7CE','#111111','Staff pick their name and mark shift availability; everything syncs to a Google Sheet. Built for URANUS English Center.'],
- ['Shakuhachi Shop','Creative','JAVASCRIPT','','shakuhachishop','#5B3A29','#F2F1EC','An online store for shakuhachi flutes, with its own admin panel for products and orders.'],
- ['Reachline','Tools','HTML · LLM','','Reachline','#A7C7FF','#111111','Security triage that checks whether a vulnerable dependency is actually reachable, then drafts a VEX statement for human sign-off.']
+const F=[
+ {t:'Uranus Center',k:'EDTECH · LMS PLATFORM',url:'https://uranuscenter.com',img:'uranus',
+  d:'The public website and learning platform for URANUS, an exam-prep center running two campuses in Ho Chi Minh City since 2015 — Grades 1–12, plus ĐGNL, VSTEP, TOEIC and IELTS prep.',
+  h:['Animated solar-system hero that turns the brand name into the whole visual identity','LMS sign-in for students: lessons, practice tests and progress reports synced with in-class schedules','Course tiers, learning roadmap and a team directory for 30+ teachers and TAs','Light / dark theme switch and a floating support button'],
+  s:['LMS','Responsive','Dark mode','Vietnamese']},
+ {t:'Old Shakuhachi Shop',k:'E-COMMERCE · INTERNATIONAL',url:'https://shakuhachishop.com',img:'shakuhachi',repo:'shakuhachishop',
+  d:'An online store selling vintage and used shakuhachi — Edo, jinashi, jiari and Yuu flutes — to players around the world. Quiet, editorial design inspired by Japanese print and calligraphy.',
+  h:['Every flute listed with photos, video and an honest repair history','Kanji seal hero and serif typography that set a calm, crafted tone','Custom admin panel so the owner can add products and manage listings','Messenger contact flow instead of a heavy checkout for one-of-a-kind items'],
+  s:['JavaScript','Admin panel','English','SEO']},
+ {t:'RentTrek',k:'E-COMMERCE · RENTAL',url:'https://renttrek.store',img:'renttrek',repo:'renttrek',
+  d:'A rental shop for trekking gear in Vietnam — jackets, pants, boots, backpacks and poles. Rent online, two-way shipping, return after the climb.',
+  h:['Layered misty-mountain hero with giant display type: the brand feels like the trip','Rental bag with size picker and price calculated by number of days (+20k/day)','Clear 4-step rental flow: deposit, delivery, extra days, return & refund','Route section covering Fansipan, Tà Xùa, Lảo Thẩn, Lang Biang and more'],
+  s:['HTML · CSS · JS','Cart logic','Mobile-first','Vietnamese']}
 ];
-const cats=['All','Tools','Education','Creative'];
+const P=[
+ {t:'VirLabs',c:'Education',x:'HTML · JS',live:'https://sucalb.github.io/VirLabs/',repo:'VirLabs',img:'virlabs',d:'60+ interactive simulations for teachers of math, physics, chemistry, biology, geography and IT — with a projector mode for the classroom.'},
+ {t:'FormatWords',c:'Tools',x:'HTML · JS · OCR',live:'https://format-words.vercel.app',repo:'FormatWords',img:'formatwords',d:'Turns multiple-choice exams from Word, PDF or photos into clean Word files — review in the browser, shuffle versions and export answer keys.'},
+ {t:'Random Human',c:'Education',x:'JAVASCRIPT · ANIMATION',live:'https://sucalb.github.io/random-human/',repo:'random-human',img:'random',d:'Pick a student at random through 13 animated mini-games — UFO, street race and more. Turns “who answers next?” into the best part of class.'},
+ {t:'Lumi Travel',c:'Commerce',x:'JAVASCRIPT · ADMIN',live:'https://sucalb.github.io/lumi-travel/',repo:'lumi-travel',img:'lumi',d:'A travel agency site for China tours — tour search, visa services and an admin panel for managing tours.'},
+ {t:'SẮC Studio',c:'Commerce',x:'HTML · CSS · JS',live:'https://sucalb.github.io/sac-studio/',repo:'sac-studio',img:'sac',d:'A fashion storefront in bold retro-modernism: filters, quick view, cart, wishlist, flash-sale countdown and lookbook.'},
+ {t:'Toán Mỗi Ngày',c:'Education',x:'LMS DEMO',live:'https://sucalb.github.io/toan-moi-ngay/',repo:'toan-moi-ngay',img:'toan',d:'A daily math practice LMS: assigns problems by level, gives instant worked solutions and keeps a personal log of each student’s mistakes.'},
+ {t:'Periodic Table',c:'Education',x:'HTML · JS',live:'https://sucalb.github.io/PeriodicTable/',repo:'PeriodicTable',img:'periodic',d:'An interactive periodic table for Grade 10 chemistry — tap any element for real-life uses, images, videos and atomic models.'},
+ {t:'Atlas Ngôn ngữ',c:'Creative',x:'JS · INTERACTIVE MAP',live:'https://sucalb.github.io/MappingEthnics/',repo:'MappingEthnics',img:'mapping',d:'A digital atlas exploring the language used about Vietnam’s 53 ethnic minorities — map, profiles, companion characters and a quiz.'},
+ {t:'EduResearch Hub',c:'Education',x:'NODE · GEMINI AI',live:'https://sucalb.github.io/eduresearch-hub/',repo:'eduresearch-hub',img:'eduresearch',d:'A science journal for young researchers: log ideas, track project progress and get feedback from teachers and an AI assistant.'},
+ {t:'Nari Jean',c:'Commerce',x:'HTML · CSS',live:'https://sucalb.github.io/nari-jean/',repo:'nari-jean',img:'narijean',d:'An elegant, slow-living brand site for handmade bamboo and rattan furniture crafted in Vietnam.'},
+ {t:'SortShifts',c:'Tools',x:'TYPESCRIPT · APPS SCRIPT',live:'https://sort-shifts.vercel.app',repo:'SortShifts',img:'sortshifts',d:'Schedules English teaching assistants across two campuses: auto-assigns shifts from availability, prefers back-to-back shifts and syncs both ways with Google Sheets.'},
+ {t:'ShiftRegister',c:'Tools',x:'JS · APPS SCRIPT',live:'https://sucalb.github.io/ShiftRegister/',repo:'ShiftRegister',img:'shiftregister',d:'Staff pick their name, mark the shifts they can work and everything lands in a Google Sheet. Built for URANUS English Center.'},
+ {t:'JaJu Boutique',c:'Commerce',x:'JS · GITHUB API',repo:'JaJuBoutique',bg:'#E8C9C0',fg:'#111111',d:'A boutique store for a shop in Houston, TX, with an admin panel that publishes product updates straight to GitHub Pages.'},
+ {t:'Reachline',c:'Tools',x:'SECURITY · LLM',repo:'Reachline',bg:'#A7C7FF',fg:'#111111',d:'Checks whether a vulnerable dependency is actually reachable from your code, then drafts a VEX statement for human sign-off.'},
+ {t:'MusicPlayer',c:'Creative',x:'REACT · TS · VITE',repo:'MusicPlayer',bg:'#FFB4A2',fg:'#111111',d:'A retro-style music player with interactive 3D instruments.'}
+];
+const cats=['All','Tools','Education','Commerce','Creative'];
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ext='target="_blank" rel="noopener"';
+document.getElementById('cases').innerHTML=F.map((p,i)=>{
+  const host=p.url.replace(/^https?:\/\//,'');
+  return `<article class="case"><a class="frame" href="${p.url}" ${ext} aria-label="${esc(p.t)} — visit site"><div class="bar mono" aria-hidden="true"><i></i><i></i><i></i><span>${host}</span></div><img src="img/${p.img}.webp" alt="Homepage of ${esc(p.t)}" width="1200" height="833" loading="lazy"></a><div class="case-text"><span class="k mono">0${i+1} / 0${F.length} — ${p.k}</span><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p><ul class="hl-list">${p.h.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><div class="stack mono">${p.s.map(x=>`<span>${esc(x)}</span>`).join('')}</div><div class="btns"><a class="btn solid" href="${p.url}" ${ext}>Visit ${host} ↗</a>${p.repo?`<a class="btn" href="${gh+p.repo}" ${ext}>Code ↗</a>`:''}</div></div></article>`;
+}).join('');
 const grid=document.getElementById('grid'),fl=document.getElementById('filters'),cnt=document.getElementById('count');
 function render(f){
-  const list=P.filter(p=>f==='All'||p[1]===f);
+  const list=P.filter(p=>f==='All'||p.c===f);
   cnt.textContent='('+String(list.length).padStart(2,'0')+' projects)';
-  grid.innerHTML=list.map(([t,c,tech,live,repo,bg,fg,d])=>{
-    const code=gh+repo,href=live||code;
-    return `<article class="card"><a class="thumb" href="${href}" target="_blank" rel="noopener" style="background:${bg};color:${fg}" aria-label="${esc(t)}"><span class="mono" style="font-size:13px;letter-spacing:.06em">${esc(tech)}</span><span class="t">${esc(t)}</span></a><div class="meta"><span class="tag mono">${c}</span><div class="links mono">${live?`<a href="${live}" target="_blank" rel="noopener">Live ↗</a>`:''}<a href="${code}" target="_blank" rel="noopener">Code ↗</a></div></div><p>${esc(d)}</p></article>`;
+  grid.innerHTML=list.map(p=>{
+    const code=gh+p.repo,href=p.live||code;
+    const vis=p.img?`<img src="img/${p.img}.webp" alt="Screenshot of ${esc(p.t)}" width="1200" height="833" loading="lazy"><span class="lbl mono">${esc(p.x)}</span>`
+      :`<span class="thumb" style="background:${p.bg};color:${p.fg}"><span class="mono" style="font-size:12px;letter-spacing:.06em">${esc(p.x)}</span><span class="t">${esc(p.t)}</span></span>`;
+    return `<article class="card"><a class="shot" href="${href}" ${ext} aria-label="${esc(p.t)}">${vis}</a><div class="meta"><h4>${esc(p.t)}</h4><span class="tag mono">${p.c}</span></div><p>${esc(p.d)}</p><div class="links mono">${p.live?`<a href="${p.live}" ${ext}>Live ↗</a>`:''}<a href="${code}" ${ext}>Code ↗</a></div></article>`;
   }).join('');
   fl.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.c===f));
 }
